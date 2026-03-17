@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Groupe Pléco</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --sky:#4DD9F0;--navy:#1B3A6B;--cream:#FFF8F0;--yellow:#FFD84D;--orange:#FF8C42;
+  --green:#4ECB71;--purple:#9B6DFF;--red:#FF5A5A;--muted:#7A9CBF;--bg:#F0F9FF;
+}
+body{font-family:"Nunito",sans-serif;background:var(--bg);color:var(--navy);min-height:100vh;}
+.header{background:var(--navy);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px;border-bottom:4px solid var(--sky);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 22px;border-radius:50px;border:3px solid var(--navy);font-family:"Nunito",sans-serif;font-weight:900;font-size:14px;cursor:pointer;transition:all 0.12s;box-shadow:4px 4px 0 var(--navy);}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--navy);}
+.btn-sky{background:var(--sky);color:var(--navy);}
+.btn-green{background:var(--green);color:#fff;}
+.btn-red{background:var(--red);color:#fff;}
+.btn-yellow{background:var(--yellow);color:var(--navy);}
+.btn-white{background:#fff;color:var(--navy);}
+.btn-outline{background:transparent;color:var(--navy);}
+.btn-sm{padding:7px 14px;font-size:12px;box-shadow:3px 3px 0 var(--navy);}
+.btn-sm:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--navy);}
+.input{width:100%;padding:12px 16px;border-radius:16px;border:3px solid var(--navy);background:#fff;font-size:15px;font-family:"Nunito",sans-serif;font-weight:700;box-shadow:4px 4px 0 var(--navy);}
+.input:focus{outline:none;border-color:var(--sky);box-shadow:4px 4px 0 var(--sky);}
+.label{font-size:12px;font-weight:900;color:var(--navy);margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:0.07em;}
+.card{background:#fff;border-radius:20px;padding:20px;border:3px solid var(--navy);box-shadow:6px 6px 0 var(--navy);}
+.metric{background:#fff;border-radius:18px;padding:14px 10px;border:3px solid var(--navy);box-shadow:5px 5px 0 var(--navy);text-align:center;}
+.metric-val{font-family:"Fredoka One",cursive;font-size:28px;color:var(--navy);line-height:1;}
+.metric-lbl{font-size:9px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px;}
+.metric-sub{font-size:10px;color:var(--sky);font-weight:800;margin-top:3px;}
+.tab-bar{display:flex;gap:5px;background:var(--cream);border-radius:50px;padding:5px;border:3px solid var(--navy);margin-bottom:1.5rem;box-shadow:4px 4px 0 var(--navy);}
+.tab{flex:1;padding:8px 4px;border-radius:50px;border:none;background:transparent;color:var(--muted);font-size:11px;font-family:"Nunito",sans-serif;font-weight:900;cursor:pointer;transition:all 0.15s;text-transform:uppercase;}
+.tab.active{background:var(--navy);color:#fff;}
+.progress-track{height:14px;background:var(--cream);border-radius:99px;overflow:hidden;border:2px solid var(--navy);}
+.progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--green));transition:width 0.8s;}
+.svc-card{background:#fff;border-radius:20px;overflow:hidden;cursor:pointer;border:3px solid var(--navy);box-shadow:5px 5px 0 var(--navy);transition:all 0.15s;}
+.svc-card:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--navy);}
+.svc-card.sel{border-color:var(--sky);box-shadow:5px 5px 0 var(--sky);background:#f0fcff;}
+.rank-row{background:#fff;border-radius:16px;padding:14px 16px;border:3px solid var(--navy);display:flex;align-items:center;gap:12px;box-shadow:4px 4px 0 var(--navy);}
+.order-row{background:#fff;border-radius:16px;border:3px solid var(--navy);overflow:hidden;box-shadow:4px 4px 0 var(--navy);}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 14px;background:var(--cream);border-top:2px solid var(--navy);}
+.dl{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;}
+.dv{font-size:14px;font-weight:800;color:var(--navy);margin-top:3px;}
+.flash{position:fixed;top:0;left:0;right:0;padding:14px;font-size:14px;font-weight:900;text-align:center;z-index:9999;font-family:"Nunito",sans-serif;display:none;border-bottom:4px solid var(--navy);}
+.stitle{font-family:"Fredoka One",cursive;font-size:16px;color:var(--navy);margin-bottom:14px;}
+.page{max-width:580px;margin:0 auto;padding:1.5rem 1rem 3rem;}
+.page-wide{max-width:720px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.pill{display:inline-block;padding:4px 12px;border-radius:99px;font-size:11px;font-weight:900;border:2px solid var(--navy);}
+.pill-sky{background:var(--sky);color:var(--navy);}
+.pill-green{background:var(--green);color:#fff;}
+.pill-yellow{background:var(--yellow);color:var(--navy);}
+.upill{background:var(--sky);color:var(--navy);font-size:12px;font-weight:900;padding:5px 14px;border-radius:99px;border:2px solid var(--navy);}
+.pzone{border:3px dashed var(--navy);border-radius:16px;padding:18px;text-align:center;background:#f8fcff;position:relative;overflow:hidden;}
+.pzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.ppreview{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.ppreview img{width:78px;height:78px;object-fit:cover;border-radius:10px;border:3px solid var(--navy);cursor:zoom-in;}
+.bbadge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:99px;font-size:10px;font-weight:900;border:2px solid var(--navy);}
+.bbadge.pend{background:#f0f0f0;color:var(--muted);}
+.bbadge.ok{background:var(--green);color:#fff;}
+.cc{background:#fff;border-radius:16px;border:3px solid var(--navy);overflow:hidden;box-shadow:4px 4px 0 var(--navy);margin-bottom:12px;}
+.cc-head{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;}
+.cc-head:hover{background:#f8f8f8;}
+.cc-body{padding:14px 16px 16px;border-top:2px dashed #D0E8F0;}
+.etab-bar{display:flex;background:var(--cream);border-radius:50px;padding:5px;border:3px solid var(--navy);margin-bottom:1.5rem;box-shadow:4px 4px 0 var(--navy);}
+.etab{flex:1;padding:10px 6px;border-radius:50px;border:none;background:transparent;color:var(--muted);font-size:13px;font-family:"Nunito",sans-serif;font-weight:900;cursor:pointer;transition:all 0.15s;}
+.etab.active{background:var(--navy);color:#fff;}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1rem;}
+.modal{background:#fff;border-radius:20px;padding:24px;border:3px solid var(--navy);box-shadow:8px 8px 0 var(--navy);width:100%;max-width:400px;}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;}
+.bar-chart{display:flex;align-items:flex-end;gap:10px;height:110px;}
+.bw{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;}
+.bc{width:100%;border-radius:8px 8px 0 0;min-height:4px;border:2px solid var(--navy);}
+.bl{font-size:10px;font-weight:900;color:var(--muted);text-align:center;line-height:1.2;}
+.bv{font-size:13px;font-weight:900;color:var(--navy);}
+.confirm-bg{position:fixed;inset:0;background:rgba(27,58,107,0.55);z-index:3000;display:flex;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(3px);}
+.confirm-box{background:#fff;border-radius:22px;padding:28px 24px 22px;border:3px solid var(--navy);box-shadow:8px 8px 0 var(--navy);width:100%;max-width:360px;text-align:center;}
+.confirm-icon{font-size:42px;margin-bottom:10px;}
+.confirm-title{font-family:"Fredoka One",cursive;font-size:20px;color:var(--navy);margin-bottom:8px;}
+.confirm-msg{font-size:14px;font-weight:700;color:var(--muted);margin-bottom:22px;line-height:1.5;}
+.confirm-actions{display:flex;gap:10px;}
+.confirm-actions .btn{flex:1;}
+.sync-dot{width:10px;height:10px;border-radius:50%;background:var(--green);border:2px solid var(--navy);display:inline-block;margin-right:6px;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:20px;}
+.spinner{width:48px;height:48px;border:5px solid var(--cream);border-top-color:var(--sky);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div id="flash" class="flash"></div>
+<div id="root">
+  <div class="loading-screen">
+    <div class="spinner"></div>
+    <div style="font-family:Fredoka One,cursive;font-size:22px;color:var(--sky);">Groupe Pléco</div>
+    <div style="font-size:14px;font-weight:700;color:var(--muted);">Connexion à la base de données...</div>
+  </div>
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// ═══════════════════════════════════
+// CONFIGURATION FIREBASE
+// ═══════════════════════════════════
+const firebaseConfig = {
+  apiKey: "AIzaSyAVR59siWkvihkv7SSwSOZgkGy_sc7j0io",
+  authDomain: "app-employer.firebaseapp.com",
+  projectId: "app-employer",
+  storageBucket: "app-employer.firebasestorage.app",
+  messagingSenderId: "914673503807",
+  appId: "1:914673503807:web:4a3774ebe7df57fd61f28a"
+};
+
+const fireApp = initializeApp(firebaseConfig);
+const fireDb = getFirestore(fireApp);
+const DB_DOC = doc(fireDb, "pleco", "main");
+
+// ═══════════════════════════════════
+// DONNÉES & CONSTANTES
+// ═══════════════════════════════════
+const APW = "pleco2024";
+
+const SV = [
+  {id:"m1", label:"Maison 1 étage",      type:"Résidentiel",  commission:90,  color:"#4DD9F0"},
+  {id:"m2", label:"Maison 2 étages",     type:"Résidentiel",  commission:140, color:"#9B6DFF"},
+  {id:"lead",label:"Lead réseau social", type:"Marketing",    commission:35,  color:"#FF6B9D"},
+  {id:"up", label:"Upsell abonnement",   type:"Fidélisation", commission:75,  color:"#FF8C42"},
+];
+const ST = [
+  {id:"m1", label:"Maison 1 étage",  base:70},
+  {id:"m2", label:"Maison 2 étages", base:130},
+];
+
+// ═══════════════════════════════════
+// BASE DE DONNÉES PARTAGÉE
+// ═══════════════════════════════════
+let db = {employees:[], sales:[], clients:[]};
+let dbReady = false;
+
+async function saveDB(){
+  try {
+    // Vérifie la taille approximative des données avant d'envoyer
+    const payload = {
+      employees: db.employees,
+      sales: db.sales,
+      clients: db.clients,
+      updatedAt: Date.now()
+    };
+    const size = JSON.stringify(payload).length;
+    if(size > 900000){
+      flash("⚠️ Données trop lourdes — réduis le nombre de photos","#FF5A5A");
+      return false;
+    }
+    await setDoc(DB_DOC, payload);
+    return true;
+  } catch(e) {
+    flash("⚠️ Erreur de sauvegarde !","#FF5A5A");
+    console.error(e);
+    return false;
+  }
+}
+
+// Écoute les changements en temps réel (toutes les app connectées voient les mises à jour)
+onSnapshot(DB_DOC, (snap) => {
+  if(snap.exists()){
+    const data = snap.data();
+    db.employees = data.employees || [];
+    db.sales     = data.sales     || [];
+    db.clients   = data.clients   || [];
+  } else {
+    db = {employees:[], sales:[], clients:[]};
+  }
+  if(!dbReady){
+    dbReady = true;
+    render();
+  } else {
+    // Mise à jour en temps réel — re-render si connecté
+    if(sess) render();
+  }
+});
+
+// ═══════════════════════════════════
+// STATE
+// ═══════════════════════════════════
+let sess = null;
+let flashTimer = null;
+let pendingSvc = null;
+let expandedId = null;
+let adminTab = "board";
+let empTab = "vendeur";
+let salesFilter = "all";
+let clientsFilter = "all";
+
+// ═══════════════════════════════════
+// UTILS
+// ═══════════════════════════════════
+function getWeekKey(date){
+  const d = new Date(date||Date.now());
+  d.setHours(0,0,0,0);
+  const day = d.getDay();
+  const diff = d.getDate() - day + (day===0 ? -6 : 1);
+  const mon = new Date(d);
+  mon.setDate(diff);
+  return mon.getFullYear()+"-"+(mon.getMonth()+1)+"-"+mon.getDate();
+}
+
+function calcBonus(n){ return n>=20 ? 500 : n>=10 ? 200 : 0; }
+
+function empWeekStats(empId, weekKey){
+  const sales = db.sales.filter(s => s.eid===empId && s.wk===weekKey);
+  const comm = sales.reduce((t,s)=>{ const v=SV.find(x=>x.id===s.sid); return t+(v?v.commission:0); }, 0);
+  const bonus = calcBonus(sales.length);
+  return { n:sales.length, comm, bonus, total:comm+bonus };
+}
+
+function clientPay(c){
+  const sv = ST.find(x=>x.id===c.svcId);
+  const base = sv ? sv.base : 0;
+  const br = (c.bonusRapport && c.bonusRapportOK) ? 20 : 0;
+  const ba = (c.bonusAvis && c.bonusAvisOK) ? 20 : 0;
+  return base + br + ba;
+}
+
+function flash(msg, color){
+  const el = document.getElementById("flash");
+  el.textContent = msg;
+  el.style.background = color || "#4DD9F0";
+  el.style.color = "#1B3A6B";
+  el.style.display = "block";
+  if(flashTimer) clearTimeout(flashTimer);
+  flashTimer = setTimeout(()=>{ el.style.display="none"; }, 2800);
+}
+
+function confirmModal(opts){
+  const bg = document.createElement("div");
+  bg.className = "confirm-bg";
+  bg.innerHTML =
+    '<div class="confirm-box">' +
+    '<div class="confirm-icon">'+( opts.icon||"🗑")+'</div>' +
+    '<div class="confirm-title">'+(opts.title||"Confirmer")+'</div>' +
+    '<div class="confirm-msg">'+(opts.msg||"Cette action est irréversible.")+'</div>' +
+    '<div class="confirm-actions">' +
+    '<button class="btn btn-outline" id="cm-cancel">Annuler</button>' +
+    '<button class="btn '+(opts.confirmClass||"btn-red")+'" id="cm-ok">'+(opts.confirmLabel||"Supprimer")+'</button>' +
+    '</div></div>';
+  document.body.appendChild(bg);
+  bg.querySelector("#cm-cancel").onclick = () => bg.remove();
+  bg.querySelector("#cm-ok").onclick = () => { bg.remove(); opts.onConfirm(); };
+  bg.onclick = e => { if(e.target===bg) bg.remove(); };
+}
+
+function header(label){
+  return `<div class="header">
+    <span style="font-family:Fredoka One,cursive;font-size:22px;color:var(--sky);">Groupe Pléco</span>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span class="sync-dot" title="Synchronisé en temps réel"></span>
+      ${label ? `<span class="upill">${label}</span>` : ""}
+      <button class="btn btn-white btn-sm" id="btn-logout">Quitter</button>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════
+// SVG ILLUSTRATIONS
+// ═══════════════════════════════════
+function svgM1(w,h){ return `<svg viewBox="0 0 200 130" width="${w||200}" height="${h||130}" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="130" fill="#E8FAFE"/><rect x="0" y="110" width="200" height="20" fill="#4ECB71" opacity="0.5"/><rect x="28" y="58" width="144" height="54" rx="6" fill="#fff" stroke="#1B3A6B" stroke-width="3"/><line x1="28" y1="72" x2="172" y2="72" stroke="#D0E8F0" stroke-width="2"/><line x1="28" y1="86" x2="172" y2="86" stroke="#D0E8F0" stroke-width="2"/><polygon points="16,60 100,10 184,60" fill="#4DD9F0" stroke="#1B3A6B" stroke-width="3"/><rect x="82" y="80" width="36" height="32" rx="4" fill="#1B3A6B"/><rect x="86" y="84" width="12" height="15" rx="2" fill="#4DD9F0" opacity="0.5"/><rect x="102" y="84" width="12" height="15" rx="2" fill="#4DD9F0" opacity="0.5"/></svg>`; }
+function svgM2(w,h){ return `<svg viewBox="0 0 200 130" width="${w||200}" height="${h||130}" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="130" fill="#F3EEFF"/><rect x="0" y="110" width="200" height="20" fill="#4ECB71" opacity="0.5"/><rect x="33" y="34" width="134" height="36" rx="4" fill="#fff" stroke="#1B3A6B" stroke-width="3"/><rect x="82" y="58" width="36" height="12" rx="2" fill="#E8E0FF" stroke="#1B3A6B" stroke-width="2"/><rect x="23" y="68" width="154" height="44" rx="4" fill="#fff" stroke="#1B3A6B" stroke-width="3"/><polygon points="20,36 100,4 180,36" fill="#9B6DFF" stroke="#1B3A6B" stroke-width="3"/><rect x="82" y="80" width="36" height="32" rx="4" fill="#1B3A6B"/><rect x="85" y="83" width="13" height="15" rx="2" fill="#9B6DFF" opacity="0.5"/><rect x="102" y="83" width="13" height="15" rx="2" fill="#9B6DFF" opacity="0.5"/></svg>`; }
+function svgLead(w,h){ return `<svg viewBox="0 0 200 130" width="${w||200}" height="${h||130}" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="130" fill="#FFF0F7"/><rect x="68" y="12" width="64" height="102" rx="12" fill="#FF6B9D" stroke="#1B3A6B" stroke-width="3"/><rect x="72" y="20" width="56" height="78" rx="6" fill="#fff" stroke="#1B3A6B" stroke-width="2"/><rect x="76" y="24" width="48" height="12" rx="4" fill="#FF6B9D"/><rect x="76" y="48" width="48" height="26" rx="4" fill="#FFF0F7" stroke="#1B3A6B" stroke-width="1.5"/><circle cx="150" cy="34" r="16" fill="#FF6B9D" opacity="0.15" stroke="#FF6B9D" stroke-width="2"/><text x="144" y="39" font-family="Nunito,sans-serif" font-weight="900" font-size="12" fill="#FF6B9D">+5</text></svg>`; }
+function svgUp(w,h){ return `<svg viewBox="0 0 200 130" width="${w||200}" height="${h||130}" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="130" fill="#FFF4EC"/><line x1="20" y1="112" x2="168" y2="112" stroke="#1B3A6B" stroke-width="2.5"/><line x1="20" y1="18" x2="20" y2="112" stroke="#1B3A6B" stroke-width="2.5"/><rect x="24" y="94" width="22" height="18" rx="4" fill="#FF8C42" opacity="0.3" stroke="#1B3A6B" stroke-width="2"/><rect x="52" y="76" width="22" height="36" rx="4" fill="#FF8C42" opacity="0.5" stroke="#1B3A6B" stroke-width="2"/><rect x="80" y="58" width="22" height="54" rx="4" fill="#FF8C42" opacity="0.7" stroke="#1B3A6B" stroke-width="2"/><rect x="108" y="38" width="22" height="74" rx="4" fill="#FF8C42" opacity="0.85" stroke="#1B3A6B" stroke-width="2"/><rect x="136" y="20" width="22" height="92" rx="4" fill="#FF8C42" stroke="#1B3A6B" stroke-width="2"/><polyline points="35,94 63,76 91,58 119,38 147,20" stroke="#FFD84D" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`; }
+function getSvg(svcId, w, h){
+  if(svcId==="m1") return svgM1(w,h);
+  if(svcId==="m2") return svgM2(w,h);
+  if(svcId==="lead") return svgLead(w,h);
+  if(svcId==="up") return svgUp(w,h);
+  return `<svg width="${w||48}" height="${h||48}" viewBox="0 0 48 48"><rect width="48" height="48" fill="#E8FAFE"/></svg>`;
+}
+
+// ═══════════════════════════════════
+// RENDER PRINCIPAL
+// ═══════════════════════════════════
+function render(){
+  if(!sess) { renderLogin(); return; }
+  if(sess.role==="admin") renderAdmin();
+  else renderEmp();
+}
+
+// ═══════════════════════════════════
+// LOGIN
+// ═══════════════════════════════════
+function renderLogin(){
+  const root = document.getElementById("root");
+  root.innerHTML = `
+  <div class="header" style="justify-content:center;">
+    <span style="font-family:Fredoka One,cursive;font-size:24px;color:var(--sky);">Groupe Pléco</span>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 68px);padding:2rem 1.25rem;">
+    <div style="width:100%;max-width:400px;">
+      <div style="text-align:center;margin-bottom:2rem;">
+        <div style="font-family:Fredoka One,cursive;font-size:44px;color:var(--sky);">Groupe Pléco</div>
+        <div style="font-family:Fredoka One,cursive;font-size:17px;color:var(--navy);margin-top:6px;">Portail des Équipes</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px;font-weight:700;">Nettoyage extérieur tout inclus</div>
+      </div>
+      <div style="display:flex;gap:10px;margin-bottom:1.25rem;">
+        <button class="btn btn-sky" style="flex:1;" id="btn-show-emp">👷 Employé</button>
+        <button class="btn btn-outline" style="flex:1;" id="btn-show-admin">🔐 Admin</button>
+      </div>
+      <div id="login-form"></div>
+    </div>
+  </div>`;
+
+  document.getElementById("btn-show-emp").onclick = () => {
+    document.getElementById("login-form").innerHTML = `
+    <div class="card"><div style="display:flex;flex-direction:column;gap:14px;">
+      <div><span class="label">Votre nom</span>
+      <select class="input" id="sel-emp">
+        <option value="">Sélectionner...</option>
+        ${db.employees.map(e=>`<option value="${e.id}">${e.name}</option>`).join("")}
+      </select></div>
+      <div><span class="label">Mot de passe</span>
+      <input type="password" class="input" id="inp-pw" placeholder="••••••"/></div>
+      <button class="btn btn-sky" style="width:100%;" id="btn-login-emp">Se connecter</button>
+    </div></div>`;
+    document.getElementById("btn-login-emp").onclick = doLoginEmp;
+    document.getElementById("inp-pw").onkeydown = e => { if(e.key==="Enter") doLoginEmp(); };
+  };
+
+  document.getElementById("btn-show-admin").onclick = () => {
+    document.getElementById("login-form").innerHTML = `
+    <div class="card"><div style="display:flex;flex-direction:column;gap:14px;">
+      <div><span class="label">Mot de passe admin</span>
+      <input type="password" class="input" id="inp-apw" placeholder="••••••"/></div>
+      <button class="btn btn-outline" style="width:100%;" id="btn-login-admin">Accès administration</button>
+    </div></div>`;
+    document.getElementById("btn-login-admin").onclick = doLoginAdmin;
+    document.getElementById("inp-apw").onkeydown = e => { if(e.key==="Enter") doLoginAdmin(); };
+  };
+}
+
+function doLoginEmp(){
+  const id = document.getElementById("sel-emp").value;
+  const pw = document.getElementById("inp-pw").value;
+  const emp = db.employees.find(e=>e.id===id);
+  if(!emp){ flash("Sélectionne ton nom !","#FFD84D"); return; }
+  if(emp.password !== pw){ flash("Mot de passe incorrect !","#FF5A5A"); return; }
+  sess = {role:"employee", emp};
+  empTab = "vendeur"; pendingSvc = null; expandedId = null;
+  render();
+}
+
+function doLoginAdmin(){
+  const pw = document.getElementById("inp-apw").value;
+  if(pw !== APW){ flash("Mot de passe incorrect !","#FF5A5A"); return; }
+  sess = {role:"admin"};
+  adminTab = "board"; expandedId = null;
+  render();
+}
+
+function doLogout(){
+  sess = null; pendingSvc = null; expandedId = null;
+  render();
+}
+
+// ═══════════════════════════════════
+// EMPLOYÉ
+// ═══════════════════════════════════
+function renderEmp(){
+  const freshEmp = db.employees.find(e=>e.id===sess.emp.id);
+  if(!freshEmp){ doLogout(); return; }
+  sess.emp = freshEmp;
+
+  const root = document.getElementById("root");
+  root.innerHTML = `
+  ${header(freshEmp.name)}
+  <div class="page">
+    <div class="etab-bar">
+      <button class="etab ${empTab==="vendeur"?"active":""}" id="etab-v">💰 Vendeur</button>
+      <button class="etab ${empTab==="tech"?"active":""}" id="etab-t">🏠 Technicien</button>
+    </div>
+    <div id="emp-body"></div>
+  </div>`;
+
+  document.getElementById("btn-logout").onclick = doLogout;
+  document.getElementById("etab-v").onclick = () => { empTab="vendeur"; pendingSvc=null; renderEmp(); };
+  document.getElementById("etab-t").onclick = () => { empTab="tech"; renderEmp(); };
+
+  if(empTab==="vendeur") renderVendeur();
+  else renderTech();
+}
+
+// ── VENDEUR ──
+function renderVendeur(){
+  const e = sess.emp;
+  const wk = getWeekKey();
+  const mySales = db.sales.filter(s=>s.eid===e.id);
+  const st = empWeekStats(e.id, wk);
+  const nextBonus = st.n<10 ? {at:10,val:200} : st.n<20 ? {at:20,val:500} : null;
+  const prog = nextBonus ? Math.min(100, Math.round(st.n/nextBonus.at*100)) : 100;
+  const recent = [...mySales].reverse().slice(0,8);
+
+  const body = document.getElementById("emp-body");
+  body.innerHTML = `
+  <div class="g3">
+    <div class="metric"><div class="metric-val">${st.n}</div><div class="metric-lbl">Ventes</div><div class="metric-sub">cette semaine</div></div>
+    <div class="metric"><div class="metric-val" style="color:var(--sky)">${st.comm}$</div><div class="metric-lbl">Commissions</div><div class="metric-sub">accumulées</div></div>
+    <div class="metric"><div class="metric-val" style="color:${st.bonus>0?"var(--orange)":"var(--muted)"}">${st.bonus}$</div><div class="metric-lbl">Bonus</div><div class="metric-sub">${st.bonus>0?"🎉 débloqué !":"en attente"}</div></div>
+  </div>
+  <div class="card" style="margin-bottom:1.25rem;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+      <span style="font-family:Fredoka One,cursive;font-size:15px;">Prochain bonus</span>
+      ${nextBonus ? `<span class="pill pill-sky">${st.n}/${nextBonus.at} → +${nextBonus.val}$</span>` : `<span class="pill pill-green">Max ! 🏆</span>`}
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="prog-bar" style="width:0%"></div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:5px;">
+      <span style="font-size:11px;color:var(--muted);font-weight:700;">0</span>
+      <span style="font-size:11px;color:var(--muted);font-weight:700;">${nextBonus?nextBonus.at:20} ventes</span>
+    </div>
+  </div>
+  <div class="stitle">Enregistrer une vente</div>
+  <div class="g2" style="margin-bottom:1.25rem;">
+    ${SV.map(s=>`
+    <div class="svc-card${pendingSvc===s.id?" sel":""}" id="svc-${s.id}">
+      <div style="line-height:0;">${getSvg(s.id)}</div>
+      <div style="padding:12px;">
+        <div style="font-size:10px;font-weight:900;color:${s.color};text-transform:uppercase;">${s.type}</div>
+        <div style="font-size:13px;font-weight:900;margin-top:3px;">${s.label}</div>
+        <div style="font-family:Fredoka One,cursive;font-size:20px;color:${s.color};margin-top:3px;">+${s.commission}$</div>
+        ${pendingSvc===s.id?`<div style="font-size:11px;color:var(--sky);font-weight:900;margin-top:3px;">✓ Sélectionné</div>`:""}
+      </div>
+    </div>`).join("")}
+  </div>
+  <div id="order-form"></div>
+  ${recent.length>0?`
+  <div class="card" style="margin-top:1.25rem;">
+    <div class="stitle">Mes ventes récentes</div>
+    ${recent.map((s,i)=>{
+      const sv=SV.find(x=>x.id===s.sid), d=new Date(s.date);
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;${i<recent.length-1?"border-bottom:2px dashed #D0E8F0":""}">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:44px;height:44px;border-radius:10px;overflow:hidden;border:2px solid var(--navy);">${getSvg(sv?.id,44,44)}</div>
+          <div>
+            <div style="font-size:13px;font-weight:800;">${sv?sv.label:"Inconnu"}</div>
+            <div style="font-size:11px;color:var(--muted);font-weight:700;">#${s.on||"—"} · ${d.toLocaleDateString("fr-CA")}</div>
+          </div>
+        </div>
+        <span style="font-family:Fredoka One,cursive;font-size:18px;color:var(--sky);">+${sv?sv.commission:0}$</span>
+      </div>`;
+    }).join("")}
+    <div style="margin-top:12px;padding-top:12px;border-top:2px solid var(--navy);display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:13px;color:var(--muted);font-weight:800;">Total semaine (avec bonus)</span>
+      <span style="font-family:Fredoka One,cursive;font-size:24px;">${st.total}$</span>
+    </div>
+  </div>`:""}`;
+
+  setTimeout(()=>{ const p=document.getElementById("prog-bar"); if(p) p.style.width=prog+"%"; }, 100);
+
+  SV.forEach(s=>{
+    const el = document.getElementById("svc-"+s.id);
+    if(el) el.onclick = () => { pendingSvc=s.id; renderVendeur(); };
+  });
+
+  if(pendingSvc) renderOrderForm();
+}
+
+function renderOrderForm(){
+  const sv = SV.find(x=>x.id===pendingSvc);
+  if(!sv) return;
+  const form = document.getElementById("order-form");
+  if(!form) return;
+  form.innerHTML = `
+  <div class="card" style="border-color:${sv.color};box-shadow:6px 6px 0 ${sv.color};">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+      <div style="width:58px;height:58px;border-radius:12px;overflow:hidden;border:2px solid var(--navy);">${getSvg(sv.id,58,58)}</div>
+      <div>
+        <div style="font-weight:900;font-size:15px;">${sv.label}</div>
+        <div style="font-family:Fredoka One,cursive;font-size:17px;color:${sv.color};">Commission : ${sv.commission}$</div>
+      </div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <span class="label">N° de commande <span style="color:var(--red);">*</span></span>
+      <input class="input" id="inp-order-num" placeholder="Ex: 2024-1042" maxlength="30" style="border-color:${sv.color};box-shadow:4px 4px 0 ${sv.color};"/>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-outline" style="flex:1;" id="btn-cancel-svc">Annuler</button>
+      <button class="btn btn-sky" style="flex:2;" id="btn-confirm-sale">✅ Confirmer la vente</button>
+    </div>
+  </div>`;
+
+  document.getElementById("btn-cancel-svc").onclick = () => { pendingSvc=null; renderVendeur(); };
+  document.getElementById("btn-confirm-sale").onclick = doConfirmSale;
+  document.getElementById("inp-order-num").onkeydown = e => { if(e.key==="Enter") doConfirmSale(); };
+  setTimeout(()=>{ document.getElementById("inp-order-num")?.focus(); }, 50);
+}
+
+async function doConfirmSale(){
+  const num = document.getElementById("inp-order-num")?.value.trim();
+  if(!num){ flash("Entre le numéro de commande !","#FF5A5A"); return; }
+  if(db.sales.find(s=>s.on===num)){ flash("Ce numéro existe déjà !","#FF5A5A"); return; }
+  const sale = {id:Date.now().toString(), eid:sess.emp.id, sid:pendingSvc, on:num, date:new Date().toISOString(), wk:getWeekKey()};
+  db.sales.push(sale);
+  await saveDB();
+  const sv = SV.find(x=>x.id===pendingSvc);
+  pendingSvc = null;
+  flash("🎉 +"+( sv?sv.commission:0)+"$ — Commande #"+num+" enregistrée !");
+  renderVendeur();
+}
+
+// ── TECHNICIEN ──
+function renderTech(){
+  const e = sess.emp;
+  const myClients = db.clients.filter(c=>c.eid===e.id);
+  const wk = getWeekKey();
+  const wkClients = myClients.filter(c=>c.wk===wk);
+  const weekPay = wkClients.reduce((t,c)=>t+clientPay(c), 0);
+  const pendingBonus = myClients.filter(c=>(c.bonusRapport&&!c.bonusRapportOK)||(c.bonusAvis&&!c.bonusAvisOK)).length;
+  const totalPay = myClients.reduce((t,c)=>t+clientPay(c), 0);
+
+  const body = document.getElementById("emp-body");
+  body.innerHTML = `
+  <div class="g3">
+    <div class="metric"><div class="metric-val">${wkClients.length}</div><div class="metric-lbl">Travaux</div><div class="metric-sub">cette semaine</div></div>
+    <div class="metric"><div class="metric-val" style="color:var(--sky)">${weekPay}$</div><div class="metric-lbl">Revenus</div><div class="metric-sub">cette semaine</div></div>
+    <div class="metric"><div class="metric-val" style="color:var(--orange)">${pendingBonus}</div><div class="metric-lbl">Bonus</div><div class="metric-sub">en attente</div></div>
+  </div>
+  <div class="card" style="margin-bottom:1.25rem;">
+    <div class="stitle">📋 Nouveau travail client</div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div><span class="label">Nom du client *</span><input class="input" id="inp-cn" placeholder="Prénom Nom" maxlength="80"/></div>
+      <div><span class="label">Adresse *</span><input class="input" id="inp-ca" placeholder="123 rue Principale, Ville" maxlength="120"/></div>
+      <div><span class="label">Type de maison *</span>
+        <select class="input" id="inp-csvc">
+          <option value="">Sélectionner...</option>
+          ${ST.map(s=>`<option value="${s.id}">${s.label} — Base: ${s.base}$</option>`).join("")}
+        </select>
+      </div>
+      <div>
+        <div class="label">📸 Photos AVANT (optionnel)</div>
+        <div class="pzone"><input type="file" id="files-before" accept="image/*" multiple/>
+          <div style="font-size:24px;">📷</div>
+          <div style="font-size:13px;font-weight:800;">Appuyer pour ajouter des photos</div>
+          <div style="font-size:11px;color:var(--muted);font-weight:700;margin-top:4px;">Max 4 photos (1 par façade)</div>
+          <div class="ppreview" id="prev-before"></div>
+        </div>
+      </div>
+      <div>
+        <div class="label">✨ Photos APRÈS <span style="color:var(--orange);font-size:11px;">→ Bonus +20$</span></div>
+        <div class="pzone"><input type="file" id="files-after" accept="image/*" multiple/>
+          <div style="font-size:24px;">🏠</div>
+          <div style="font-size:13px;font-weight:800;">Appuyer pour ajouter des photos</div>
+          <div style="font-size:11px;color:var(--muted);font-weight:700;margin-top:4px;">Max 4 photos (1 par façade)</div>
+          <div class="ppreview" id="prev-after"></div>
+        </div>
+      </div>
+      <div style="background:#FFF8F0;border-radius:14px;padding:12px;border:2px dashed var(--orange);">
+        <div style="font-size:12px;font-weight:900;margin-bottom:6px;">💰 Comment tu es payé :</div>
+        <div style="font-size:12px;color:var(--muted);font-weight:700;line-height:1.9;">
+          🏠 1 étage : <b style="color:var(--navy);">70$</b> de base &nbsp;|&nbsp; 🏠 2 étages : <b style="color:var(--navy);">130$</b> de base<br/>
+          📷 Bonus rapport <b style="color:var(--orange);">+20$</b> — photos après validées admin<br/>
+          ⭐ Bonus avis 5★ <b style="color:#FFB800;">+20$</b> — avis Google confirmé admin
+        </div>
+      </div>
+      <button class="btn btn-sky" id="btn-submit-client">✅ Soumettre le travail</button>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+    <div class="stitle" style="margin-bottom:0;">📁 Mes travaux (${myClients.length})</div>
+    <span style="font-size:12px;font-weight:800;color:var(--muted);">Cumulé : <b style="color:var(--navy);">${totalPay}$</b></span>
+  </div>
+  <div id="my-clients">
+    ${myClients.length===0
+      ? `<div class="card" style="text-align:center;padding:2rem;color:var(--muted);font-weight:700;">Aucun travail enregistré.</div>`
+      : [...myClients].reverse().map(c=>renderClientCard(c,false)).join("")}
+  </div>`;
+
+  document.getElementById("files-before").onchange = () => previewFiles("before");
+  document.getElementById("files-after").onchange = () => previewFiles("after");
+  document.getElementById("btn-submit-client").onclick = doSubmitClient;
+}
+
+function previewFiles(type){
+  const input = document.getElementById("files-"+type);
+  const prev = document.getElementById("prev-"+type);
+  if(!input||!prev) return;
+  prev.innerHTML = "";
+  Array.from(input.files).slice(0,4).forEach(f=>{
+    const r = new FileReader();
+    r.onload = e => { const img=document.createElement("img"); img.src=e.target.result; prev.appendChild(img); };
+    r.readAsDataURL(f);
+  });
+}
+
+// Compresse une image en base64 réduite pour rester sous la limite Firestore
+function compressImage(file, maxW, quality){
+  return new Promise(resolve=>{
+    const r = new FileReader();
+    r.onload = ev=>{
+      const img = new Image();
+      img.onload = ()=>{
+        const canvas = document.createElement("canvas");
+        let w = img.width, h = img.height;
+        if(w > maxW){ h = Math.round(h * maxW / w); w = maxW; }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL("image/jpeg", quality||0.5));
+      };
+      img.src = ev.target.result;
+    };
+    r.readAsDataURL(file);
+  });
+}
+
+async function doSubmitClient(){
+  const name = document.getElementById("inp-cn")?.value.trim();
+  const addr = document.getElementById("inp-ca")?.value.trim();
+  const svcId = document.getElementById("inp-csvc")?.value;
+  if(!name){ flash("Saisis le nom du client !","#FF5A5A"); return; }
+  if(!addr){ flash("Saisis l'adresse !","#FF5A5A"); return; }
+  if(!svcId){ flash("Sélectionne le type de maison !","#FFD84D"); return; }
+
+  // Désactive le bouton pendant la soumission
+  const btn = document.getElementById("btn-submit-client");
+  if(btn){ btn.disabled=true; btn.textContent="⏳ Enregistrement..."; }
+
+  const sv = ST.find(x=>x.id===svcId);
+  const client = {
+    id: Date.now().toString(),
+    eid: sess.emp.id, empName: sess.emp.name,
+    clientName: name, address: addr,
+    svcId, svcLabel: sv ? sv.label : "",
+    date: new Date().toISOString(), wk: getWeekKey(),
+    beforePhotos:[], afterPhotos:[],
+    bonusRapport:false, bonusRapportOK:false,
+    bonusAvis:false, bonusAvisOK:false
+  };
+
+  const bfFiles = Array.from(document.getElementById("files-before")?.files||[]).slice(0,4);
+  const afFiles = Array.from(document.getElementById("files-after")?.files||[]).slice(0,4);
+
+  try {
+    // Compresse fort (max 480px, qualité 30%) pour que 4+4 photos rentrent sous la limite Firestore 1MB
+    for(const f of bfFiles){
+      const compressed = await compressImage(f, 480, 0.30);
+      client.beforePhotos.push(compressed);
+    }
+    for(const f of afFiles){
+      const compressed = await compressImage(f, 480, 0.30);
+      client.afterPhotos.push(compressed);
+    }
+    client.bonusRapport = client.afterPhotos.length > 0;
+    db.clients.push(client);
+    await saveDB();
+    flash("✅ Travail chez "+name+" enregistré !");
+    renderTech();
+  } catch(err) {
+    console.error(err);
+    flash("⚠️ Erreur — réessaie sans photos ou avec moins de photos","#FF5A5A");
+    if(btn){ btn.disabled=false; btn.textContent="✅ Soumettre le travail"; }
+  }
+}
+
+// ── CARTE CLIENT ──
+function renderClientCard(c, isAdmin){
+  const pay = clientPay(c);
+  const d = new Date(c.date);
+  const isExp = expandedId === c.id;
+
+  let photosB = "";
+  if(c.beforePhotos && c.beforePhotos.length>0){
+    photosB = c.beforePhotos.map((p,i)=>`<img src="${p}" data-lb-cid="${c.id}" data-lb-type="b" data-lb-idx="${i}" title="Agrandir" class="ppreview-img"/>`).join("");
+  }
+  let photosA = "";
+  if(c.afterPhotos && c.afterPhotos.length>0){
+    photosA = c.afterPhotos.map((p,i)=>`<img src="${p}" data-lb-cid="${c.id}" data-lb-type="a" data-lb-idx="${i}" title="Agrandir" class="ppreview-img"/>`).join("");
+  }
+
+  const adminBtns = isAdmin ? `
+  <div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:12px;border-top:2px dashed #D0E8F0;">
+    ${c.bonusRapport&&!c.bonusRapportOK ? `<button class="btn btn-green btn-sm client-action-btn" data-action="valrap" data-cid="${c.id}">✅ Valider rapport (+20$)</button>` : ""}
+    ${c.bonusRapportOK ? `<span class="pill pill-green">📷 Rapport ✓</span>` : ""}
+    ${!c.bonusAvis ? `<button class="btn btn-sky btn-sm client-action-btn" data-action="grantavis" data-cid="${c.id}">⭐ Avis 5★ reçu</button>` : ""}
+    ${c.bonusAvis&&!c.bonusAvisOK ? `<button class="btn btn-yellow btn-sm client-action-btn" data-action="valavis" data-cid="${c.id}">⭐ Valider avis (+20$)</button>` : ""}
+    ${c.bonusAvisOK ? `<span class="pill pill-yellow">⭐ Avis ✓</span>` : ""}
+    <button class="btn btn-red btn-sm client-action-btn" data-action="delclient" data-cid="${c.id}">🗑 Supprimer</button>
+  </div>` : `<div style="padding-top:10px;border-top:2px dashed #D0E8F0;font-size:11px;color:var(--muted);font-weight:700;font-style:italic;">Les bonus sont validés par l'administrateur.</div>`;
+
+  return `<div class="cc">
+    <div class="cc-head toggle-client" data-cid="${c.id}">
+      <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0;">
+        <div style="width:46px;height:46px;border-radius:12px;overflow:hidden;flex-shrink:0;border:2px solid var(--navy);">${getSvg(c.svcId,46,46)}</div>
+        <div style="min-width:0;">
+          <div style="font-weight:900;font-size:14px;">${c.clientName}</div>
+          <div style="font-size:11px;color:var(--muted);font-weight:700;">${c.svcLabel} · ${d.toLocaleDateString("fr-CA")}</div>
+          ${isAdmin ? `<div style="font-size:11px;color:var(--purple);font-weight:700;margin-top:2px;">👷 ${c.empName}</div>` : ""}
+          <div style="display:flex;gap:5px;margin-top:5px;flex-wrap:wrap;">
+            ${c.bonusRapport ? `<span class="bbadge ${c.bonusRapportOK?"ok":"pend"}">📷${c.bonusRapportOK?" Validé":" En attente"}</span>` : ""}
+            ${c.bonusAvis ? `<span class="bbadge ${c.bonusAvisOK?"ok":"pend"}">⭐${c.bonusAvisOK?" Validé":" En attente"}</span>` : ""}
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;padding-left:8px;">
+        <span style="font-family:Fredoka One,cursive;font-size:19px;color:var(--sky);">+${pay}$</span>
+        <span style="font-size:12px;color:var(--muted);">${isExp?"▲":"▼"}</span>
+      </div>
+    </div>
+    ${isExp ? `<div class="cc-body">
+      <div class="dgrid" style="border:none;background:transparent;padding:0;margin-bottom:12px;">
+        <div><div class="dl">Adresse</div><div class="dv" style="font-size:12px;">${c.address}</div></div>
+        <div><div class="dl">Paie totale</div><div class="dv" style="color:var(--sky);">${pay}$</div></div>
+        <div><div class="dl">Taux de base</div><div class="dv">${ST.find(x=>x.id===c.svcId)?.base||0}$</div></div>
+        <div><div class="dl">Bonus rapport</div><div class="dv" style="color:${c.bonusRapportOK?"#4ECB71":c.bonusRapport?"#FF8C42":"var(--muted)"};">${c.bonusRapport?(c.bonusRapportOK?"✓ +20$":"⏳ +20$"):"—"}</div></div>
+        <div><div class="dl">Bonus avis 5★</div><div class="dv" style="color:${c.bonusAvisOK?"#4ECB71":c.bonusAvis?"#FFB800":"var(--muted)"};">${c.bonusAvis?(c.bonusAvisOK?"✓ +20$":"⏳ +20$"):"—"}</div></div>
+      </div>
+      <div style="margin-bottom:10px;">
+        <div class="dl" style="margin-bottom:6px;">Photos AVANT</div>
+        ${photosB ? `<div class="ppreview">${photosB}</div>` : `<div style="font-size:11px;color:var(--muted);font-style:italic;">Aucune photo</div>`}
+      </div>
+      <div style="margin-bottom:12px;">
+        <div class="dl" style="margin-bottom:6px;">Photos APRÈS</div>
+        ${photosA ? `<div class="ppreview">${photosA}</div>` : `<div style="font-size:11px;color:var(--muted);font-style:italic;">Aucune photo</div>`}
+      </div>
+      ${adminBtns}
+    </div>` : ""}
+  </div>`;
+}
+
+// Délégation d'événements pour les cartes clients
+document.addEventListener("click", function(e){
+  const lbImg = e.target.closest("[data-lb-cid]");
+  if(lbImg){
+    e.stopPropagation();
+    openLightbox(lbImg.dataset.lbCid, lbImg.dataset.lbType, parseInt(lbImg.dataset.lbIdx));
+    return;
+  }
+  const actionBtn = e.target.closest(".client-action-btn");
+  if(actionBtn){
+    e.stopPropagation();
+    const action = actionBtn.dataset.action;
+    const cid = actionBtn.dataset.cid;
+    if(action==="delclient") doDeleteClient(cid);
+    else if(action==="valrap") doValidateBonus(cid,"rapport");
+    else if(action==="valavis") doValidateBonus(cid,"avis");
+    else if(action==="grantavis") doGrantAvis(cid);
+    return;
+  }
+  const toggleHead = e.target.closest(".toggle-client");
+  if(toggleHead){
+    const cid = toggleHead.dataset.cid;
+    expandedId = expandedId===cid ? null : cid;
+    render();
+    return;
+  }
+  if(e.target.id==="btn-logout"){ doLogout(); return; }
+});
+
+function doDeleteClient(id){
+  const c = db.clients.find(x=>x.id===id);
+  const name = c ? c.clientName : "ce travail";
+  confirmModal({
+    icon:"🗑", title:"Supprimer le travail ?",
+    msg:`Le travail de <b>${name}</b> sera définitivement supprimé.`,
+    confirmLabel:"Oui, supprimer", confirmClass:"btn-red",
+    onConfirm: async () => {
+      db.clients = db.clients.filter(c=>c.id!==id);
+      await saveDB();
+      if(expandedId===id) expandedId = null;
+      flash("Travail supprimé","#FF5A5A");
+      render();
+    }
+  });
+}
+
+async function doValidateBonus(id, type){
+  const c = db.clients.find(x=>x.id===id);
+  if(!c) return;
+  if(type==="rapport") c.bonusRapportOK = true;
+  if(type==="avis") c.bonusAvisOK = true;
+  await saveDB();
+  flash("Bonus validé pour "+c.clientName+" !","#4ECB71");
+  render();
+}
+
+async function doGrantAvis(id){
+  const c = db.clients.find(x=>x.id===id);
+  if(!c) return;
+  c.bonusAvis = true; c.bonusAvisOK = false;
+  await saveDB();
+  flash("Avis 5 étoiles accordé !","#FFD84D");
+  render();
+}
+
+// ─── LIGHTBOX ───
+function openLightbox(clientId, type, idx){
+  const c = db.clients.find(x=>x.id===clientId);
+  if(!c) return;
+  const photos = type==="b" ? c.beforePhotos : c.afterPhotos;
+  if(!photos||!photos.length) return;
+  let cur = idx||0;
+  const lb = document.createElement("div");
+  lb.className = "lb"; lb.id = "lightbox";
+  function draw(){
+    lb.innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;">
+      ${photos.length>1 ? `<button id="lb-prev" style="background:rgba(255,255,255,0.2);border:2px solid #fff;color:#fff;font-size:30px;width:48px;height:48px;border-radius:50%;cursor:pointer;flex-shrink:0;">‹</button>` : ""}
+      <img src="${photos[cur]}" style="max-width:82vw;max-height:70vh;border-radius:12px;border:3px solid var(--sky);object-fit:contain;display:block;"/>
+      ${photos.length>1 ? `<button id="lb-next" style="background:rgba(255,255,255,0.2);border:2px solid #fff;color:#fff;font-size:30px;width:48px;height:48px;border-radius:50%;cursor:pointer;flex-shrink:0;">›</button>` : ""}
+    </div>
+    <div style="margin-top:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;">
+      <span style="color:#fff;font-family:Nunito,sans-serif;font-weight:800;font-size:13px;">Photo ${cur+1} / ${photos.length}</span>
+      <a href="${photos[cur]}" download="pleco-photo-${cur+1}.png" style="background:var(--sky);color:var(--navy);padding:7px 16px;border-radius:50px;font-family:Nunito,sans-serif;font-weight:900;font-size:12px;text-decoration:none;border:2px solid var(--navy);">⬇ Télécharger</a>
+      <button id="lb-close" style="background:var(--red);color:#fff;padding:7px 16px;border-radius:50px;font-family:Nunito,sans-serif;font-weight:900;font-size:12px;border:2px solid var(--navy);cursor:pointer;">✕ Fermer</button>
+    </div>`;
+    document.getElementById("lb-close").onclick = () => { lb.remove(); document.onkeydown=null; };
+    if(document.getElementById("lb-prev")) document.getElementById("lb-prev").onclick = () => { cur=(cur-1+photos.length)%photos.length; draw(); };
+    if(document.getElementById("lb-next")) document.getElementById("lb-next").onclick = () => { cur=(cur+1)%photos.length; draw(); };
+  }
+  lb.onclick = e => { if(e.target===lb){ lb.remove(); document.onkeydown=null; } };
+  document.onkeydown = e => {
+    if(e.key==="Escape"){ lb.remove(); document.onkeydown=null; }
+    if(e.key==="ArrowLeft") { cur=(cur-1+photos.length)%photos.length; draw(); }
+    if(e.key==="ArrowRight") { cur=(cur+1)%photos.length; draw(); }
+  };
+  document.body.appendChild(lb);
+  draw();
+}
+
+// ═══════════════════════════════════
+// ADMIN
+// ═══════════════════════════════════
+function renderAdmin(){
+  const root = document.getElementById("root");
+  root.innerHTML = `
+  ${header("Administration")}
+  <div class="page page-wide">
+    <div class="tab-bar">
+      <button class="tab ${adminTab==="board"?"active":""}" id="atab-board">📊 Tableau</button>
+      <button class="tab ${adminTab==="orders"?"active":""}" id="atab-orders">💰 Ventes</button>
+      <button class="tab ${adminTab==="clients"?"active":""}" id="atab-clients">🏠 Travaux</button>
+      <button class="tab ${adminTab==="team"?"active":""}" id="atab-team">👷 Équipe</button>
+    </div>
+    <div id="admin-body"></div>
+  </div>`;
+
+  document.getElementById("btn-logout").onclick = doLogout;
+  document.getElementById("atab-board").onclick   = () => { adminTab="board";   expandedId=null; renderAdmin(); };
+  document.getElementById("atab-orders").onclick  = () => { adminTab="orders";  expandedId=null; renderAdmin(); };
+  document.getElementById("atab-clients").onclick = () => { adminTab="clients"; expandedId=null; renderAdmin(); };
+  document.getElementById("atab-team").onclick    = () => { adminTab="team";    expandedId=null; renderAdmin(); };
+
+  if(adminTab==="board")        renderBoard();
+  else if(adminTab==="orders")  renderOrders();
+  else if(adminTab==="clients") renderAdminClients();
+  else                          renderTeam();
+}
+
+// ── TABLEAU ──
+function renderBoard(){
+  const wk = getWeekKey();
+  const empStats = db.employees.map(e=>{
+    const st = empWeekStats(e.id, wk);
+    return {e, ...st};
+  }).sort((a,b)=>b.total-a.total);
+  const totalComm  = empStats.reduce((t,e)=>t+e.comm, 0);
+  const totalBonus = empStats.reduce((t,e)=>t+e.bonus, 0);
+  const totalN     = empStats.reduce((t,e)=>t+e.n, 0);
+  const svcCounts  = SV.map(s=>({s, count:db.sales.filter(x=>x.sid===s.id&&x.wk===wk).length}));
+  const maxCount   = Math.max(...svcCounts.map(x=>x.count), 1);
+  const barColors  = ["#4DD9F0","#9B6DFF","#FF6B9D","#FF8C42"];
+  const wkClients  = db.clients.filter(c=>c.wk===wk);
+  const pendingBonus = db.clients.filter(c=>(c.bonusRapport&&!c.bonusRapportOK)||(c.bonusAvis&&!c.bonusAvisOK)).length;
+  const wkTechPay  = wkClients.reduce((t,c)=>t+clientPay(c), 0);
+
+  document.getElementById("admin-body").innerHTML = `
+  <div style="font-family:Fredoka One,cursive;font-size:12px;color:var(--navy);margin-bottom:8px;opacity:0.6;">💰 VENDEURS — CETTE SEMAINE</div>
+  <div class="g3">
+    <div class="metric"><div class="metric-val">${totalN}</div><div class="metric-lbl">Ventes</div><div class="metric-sub">cette semaine</div></div>
+    <div class="metric"><div class="metric-val" style="color:var(--sky)">${totalComm}$</div><div class="metric-lbl">Commissions</div><div class="metric-sub">à verser</div></div>
+    <div class="metric"><div class="metric-val" style="color:var(--orange)">${totalBonus}$</div><div class="metric-lbl">Bonus</div><div class="metric-sub">débloqués</div></div>
+  </div>
+  <div class="card" style="margin-bottom:1.25rem;">
+    <div class="stitle">Ventes par forfait — semaine</div>
+    <div class="bar-chart">
+      ${svcCounts.map(({s,count},i)=>`<div class="bw">
+        <div class="bv">${count}</div>
+        <div style="width:100%;flex:1;display:flex;align-items:flex-end;">
+          <div class="bc" style="background:${barColors[i]};height:${count===0?4:Math.max(14,Math.round(count/maxCount*90))}px;width:100%;"></div>
+        </div>
+        <div class="bl">${s.label==="Maison 1 étage"?"1 étage":s.label==="Maison 2 étages"?"2 étages":s.label==="Lead réseau social"?"Lead":"Upsell"}</div>
+      </div>`).join("")}
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:1.5rem;">
+    <div class="stitle">Classement vendeurs — semaine</div>
+    ${empStats.length===0
+      ? `<div style="text-align:center;padding:2rem;color:var(--muted);font-weight:700;">Aucun employé.</div>`
+      : `<div style="display:flex;flex-direction:column;gap:10px;">
+        ${empStats.map((e,i)=>{
+          const medals=[{bg:"#FFD84D",txt:"#1B3A6B"},{bg:"#C0C0C0",txt:"#1B3A6B"},{bg:"#CD7F32",txt:"#fff"}];
+          const m = medals[i]||{bg:"#E8FAFE",txt:"var(--muted)"};
+          const pct = Math.min(100, Math.round(e.n/20*100));
+          return `<div class="rank-row">
+            <div style="width:34px;height:34px;border-radius:50%;background:${m.bg};border:3px solid var(--navy);display:flex;align-items:center;justify-content:center;font-family:Fredoka One,cursive;font-size:15px;color:${m.txt};flex-shrink:0;">${i+1}</div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-weight:900;font-size:14px;">${e.e.name}</div>
+              <div style="margin-top:5px;"><div class="progress-track" style="height:6px;"><div class="progress-fill" style="width:${pct}%;"></div></div></div>
+              <div style="font-size:11px;color:var(--muted);margin-top:3px;font-weight:700;">${e.n} vente${e.n!==1?"s":""} · ${e.comm}$ comm · <span style="color:${e.bonus>0?"var(--orange)":"var(--muted)"};">${e.bonus>0?"+"+e.bonus+"$ bonus":"aucun bonus"}</span></div>
+            </div>
+            <span style="font-family:Fredoka One,cursive;font-size:20px;flex-shrink:0;">${e.total}$</span>
+          </div>`;
+        }).join("")}
+      </div>`}
+  </div>
+  <div style="font-family:Fredoka One,cursive;font-size:12px;color:var(--navy);margin-bottom:8px;opacity:0.6;">🏠 TECHNICIENS — CETTE SEMAINE</div>
+  <div class="g3">
+    <div class="metric"><div class="metric-val">${wkClients.length}</div><div class="metric-lbl">Travaux</div><div class="metric-sub">cette semaine</div></div>
+    <div class="metric"><div class="metric-val" style="color:var(--red)">${pendingBonus}</div><div class="metric-lbl">Bonus</div><div class="metric-sub">à valider</div></div>
+    <div class="metric"><div class="metric-val" style="color:var(--sky)">${wkTechPay}$</div><div class="metric-lbl">Paie tech</div><div class="metric-sub">cette semaine</div></div>
+  </div>`;
+}
+
+// ── VENTES ──
+function renderOrders(){
+  const empList = [{id:"all",name:"Tous"}, ...db.employees];
+  const filtered = salesFilter==="all"
+    ? [...db.sales].reverse()
+    : [...db.sales].filter(s=>s.eid===salesFilter).reverse();
+  const total = filtered.reduce((t,s)=>{ const v=SV.find(x=>x.id===s.sid); return t+(v?v.commission:0); }, 0);
+
+  const body = document.getElementById("admin-body");
+  body.innerHTML = `
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;align-items:center;">
+    ${empList.map(e=>`<button class="filter-btn" data-eid="${e.id}" style="padding:7px 16px;border-radius:50px;border:2px solid ${salesFilter===e.id?"var(--navy)":"#c8dff0"};background:${salesFilter===e.id?"var(--navy)":"#fff"};color:${salesFilter===e.id?"#fff":"var(--muted)"};font-size:12px;font-family:Nunito,sans-serif;font-weight:900;cursor:pointer;">${e.name}</button>`).join("")}
+    <button class="btn btn-red btn-sm" id="btn-clear-sales" style="margin-left:auto;">🗑 Tout effacer</button>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+    <span style="font-size:12px;color:var(--muted);font-weight:800;">${filtered.length} commande${filtered.length!==1?"s":""}</span>
+    <span style="font-family:Fredoka One,cursive;font-size:18px;">Total : ${total}$</span>
+  </div>
+  ${filtered.length===0
+    ? `<div class="card" style="text-align:center;padding:2.5rem;color:var(--muted);font-weight:700;">Aucune commande.</div>`
+    : `<div style="display:flex;flex-direction:column;gap:10px;">
+      ${filtered.map(s=>{
+        const sv=SV.find(x=>x.id===s.sid), emp=db.employees.find(e=>e.id===s.eid), d=new Date(s.date);
+        return `<div class="order-row">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;">
+            <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0;">
+              <div style="width:52px;height:52px;border-radius:12px;overflow:hidden;border:2px solid var(--navy);">${getSvg(sv?.id,52,52)}</div>
+              <div>
+                <div style="font-weight:900;font-size:14px;">${sv?sv.label:"Inconnu"}</div>
+                <div style="font-size:11px;color:var(--muted);font-weight:700;">${d.toLocaleDateString("fr-CA")} · ${d.toLocaleTimeString("fr-CA",{hour:"2-digit",minute:"2-digit"})}</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;">
+              <span style="font-family:Fredoka One,cursive;font-size:19px;color:var(--sky);">+${sv?sv.commission:0}$</span>
+              <button class="btn btn-red btn-sm del-sale-btn" data-sid="${s.id}">🗑 Supprimer</button>
+            </div>
+          </div>
+          <div class="dgrid">
+            <div><div class="dl">N° commande</div><div class="dv">#${s.on||"—"}</div></div>
+            <div><div class="dl">Vendeur</div><div class="dv">${emp?emp.name:"Inconnu"}</div></div>
+            <div><div class="dl">Catégorie</div><div class="dv" style="color:${sv?sv.color:"var(--navy)"};">${sv?sv.type:"—"}</div></div>
+            <div><div class="dl">Date</div><div class="dv">${d.toLocaleDateString("fr-CA")}</div></div>
+          </div>
+        </div>`;
+      }).join("")}
+    </div>`}`;
+
+  body.querySelectorAll(".filter-btn").forEach(btn=>{
+    btn.onclick = () => { salesFilter = btn.dataset.eid; renderOrders(); };
+  });
+
+  body.querySelectorAll(".del-sale-btn").forEach(btn=>{
+    btn.onclick = () => {
+      const sid = btn.dataset.sid;
+      const sale = db.sales.find(s=>s.id===sid);
+      const sv = sale ? SV.find(x=>x.id===sale.sid) : null;
+      confirmModal({
+        icon:"💰", title:"Supprimer la vente ?",
+        msg:`La commande <b>#${sale?sale.on:"—"}</b> (${sv?sv.label:"—"}) sera définitivement supprimée.`,
+        confirmLabel:"Oui, supprimer", confirmClass:"btn-red",
+        onConfirm: async () => {
+          db.sales = db.sales.filter(s=>s.id!==sid);
+          await saveDB();
+          flash("Commande supprimée","#FF5A5A");
+          renderOrders();
+        }
+      });
+    };
+  });
+
+  document.getElementById("btn-clear-sales").onclick = () => {
+    confirmModal({
+      icon:"⚠️", title:"Effacer toutes les ventes ?",
+      msg:`<b>${filtered.length} commande${filtered.length!==1?"s":""}</b> seront définitivement supprimées.`,
+      confirmLabel:"Tout effacer", confirmClass:"btn-red",
+      onConfirm: async () => {
+        db.sales = []; await saveDB();
+        flash("Historique effacé","#FF5A5A");
+        renderOrders();
+      }
+    });
+  };
+}
+
+// ── TRAVAUX ──
+function renderAdminClients(){
+  const all = [...db.clients].reverse();
+  const pending = all.filter(c=>(c.bonusRapport&&!c.bonusRapportOK)||(c.bonusAvis&&!c.bonusAvisOK));
+  const shown = clientsFilter==="pending" ? pending : all;
+
+  const body = document.getElementById("admin-body");
+  body.innerHTML = `
+  <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center;">
+    <button class="btn btn-sm ${clientsFilter==="all"?"btn-sky":"btn-outline"}" id="cf-all">Tous (${all.length})</button>
+    <button class="btn btn-sm ${clientsFilter==="pending"?"btn-yellow":"btn-outline"}" id="cf-pending">⏳ À valider (${pending.length})</button>
+    <button class="btn btn-red btn-sm" id="btn-clear-clients" style="margin-left:auto;">🗑 Tout effacer</button>
+  </div>
+  <div id="clients-list">
+    ${shown.length===0
+      ? `<div class="card" style="text-align:center;padding:2.5rem;color:var(--muted);font-weight:700;">Aucun travail.</div>`
+      : shown.map(c=>renderClientCard(c,true)).join("")}
+  </div>`;
+
+  document.getElementById("cf-all").onclick = () => { clientsFilter="all"; expandedId=null; renderAdminClients(); };
+  document.getElementById("cf-pending").onclick = () => { clientsFilter="pending"; expandedId=null; renderAdminClients(); };
+  document.getElementById("btn-clear-clients").onclick = () => {
+    confirmModal({
+      icon:"⚠️", title:"Effacer tous les travaux ?",
+      msg:`<b>${all.length} travail${all.length!==1?"x":""}</b> seront définitivement supprimés.`,
+      confirmLabel:"Tout effacer", confirmClass:"btn-red",
+      onConfirm: async () => {
+        db.clients = []; await saveDB();
+        flash("Tous les travaux effacés","#FF5A5A");
+        renderAdminClients();
+      }
+    });
+  };
+}
+
+// ── ÉQUIPE ──
+function renderTeam(){
+  const body = document.getElementById("admin-body");
+  const wk = getWeekKey();
+  body.innerHTML = `
+  <div class="card" style="margin-bottom:1.25rem;">
+    <div class="stitle">➕ Ajouter un employé</div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div><span class="label">Nom complet</span><input class="input" id="inp-new-name" placeholder="Prénom Nom"/></div>
+      <div><span class="label">Mot de passe</span><input type="password" class="input" id="inp-new-pw" placeholder="••••••"/></div>
+      <button class="btn btn-green" style="align-self:flex-start;" id="btn-add-emp">✅ Ajouter</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="stitle">👷 Équipe (${db.employees.length} membre${db.employees.length!==1?"s":""})</div>
+    ${db.employees.length===0
+      ? `<div style="text-align:center;padding:2rem;color:var(--muted);font-weight:700;">Aucun employé.</div>`
+      : db.employees.map((e,i)=>{
+          const ws = db.sales.filter(s=>s.eid===e.id&&s.wk===wk).length;
+          const ts = db.sales.filter(s=>s.eid===e.id).length;
+          const tc = db.clients.filter(c=>c.eid===e.id).length;
+          const colors=["#4DD9F0","#9B6DFF","#FF6B9D","#FF8C42","#4ECB71","#FFD84D"];
+          const col = colors[i%colors.length];
+          return `<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;${i<db.employees.length-1?"border-bottom:2px dashed #D0E8F0":""}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:42px;height:42px;border-radius:50%;background:${col};border:3px solid var(--navy);display:flex;align-items:center;justify-content:center;font-family:Fredoka One,cursive;font-size:18px;color:var(--navy);">${e.name.charAt(0).toUpperCase()}</div>
+              <div>
+                <div style="font-weight:900;font-size:15px;">${e.name}</div>
+                <div style="font-size:11px;color:var(--muted);font-weight:700;margin-top:2px;">💰 ${ws} ventes sem. · ${ts} total &nbsp;·&nbsp; 🏠 ${tc} travaux</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button class="btn btn-sky btn-sm edit-pw-btn" data-eid="${e.id}">🔑 MDP</button>
+              <button class="btn btn-red btn-sm rem-emp-btn" data-eid="${e.id}">🗑 Retirer</button>
+            </div>
+          </div>`;
+        }).join("")}
+  </div>`;
+
+  document.getElementById("btn-add-emp").onclick = async () => {
+    const name = document.getElementById("inp-new-name").value.trim();
+    const pw = document.getElementById("inp-new-pw").value;
+    if(!name){ flash("Entre un nom !","#FFD84D"); return; }
+    if(!pw||pw.length<3){ flash("Mot de passe trop court !","#FFD84D"); return; }
+    if(db.employees.find(e=>e.name.toLowerCase()===name.toLowerCase())){ flash("Ce nom existe déjà !","#FF5A5A"); return; }
+    db.employees.push({id:Date.now().toString(), name, password:pw});
+    await saveDB();
+    flash("✅ "+name+" ajouté !");
+    renderTeam();
+  };
+
+  body.addEventListener("click", function(e){
+    const remBtn = e.target.closest(".rem-emp-btn");
+    if(remBtn){
+      const id = remBtn.dataset.eid;
+      const emp = db.employees.find(e=>e.id===id);
+      const name = emp ? emp.name : "cet employé";
+      const nSales = db.sales.filter(s=>s.eid===id).length;
+      const nClients = db.clients.filter(c=>c.eid===id).length;
+      confirmModal({
+        icon:"👷", title:"Retirer "+name+" ?",
+        msg:`Ses <b>${nSales} vente${nSales!==1?"s":""}</b> et <b>${nClients} travail${nClients!==1?"x":""}</b> seront également supprimés.`,
+        confirmLabel:"Oui, retirer", confirmClass:"btn-red",
+        onConfirm: async () => {
+          db.employees = db.employees.filter(e=>e.id!==id);
+          db.sales     = db.sales.filter(s=>s.eid!==id);
+          db.clients   = db.clients.filter(c=>c.eid!==id);
+          await saveDB();
+          flash(name+" retiré de l'équipe","#FF5A5A");
+          renderTeam();
+        }
+      });
+      return;
+    }
+    const pwBtn = e.target.closest(".edit-pw-btn");
+    if(pwBtn){
+      const id = pwBtn.dataset.eid;
+      const emp = db.employees.find(e=>e.id===id);
+      if(!emp) return;
+      const modal = document.createElement("div");
+      modal.className = "modal-bg";
+      modal.innerHTML =
+        '<div class="modal">' +
+        '<div style="font-family:Fredoka One,cursive;font-size:18px;margin-bottom:16px;">Changer le mot de passe</div>' +
+        '<div style="font-weight:800;margin-bottom:14px;">'+emp.name+'</div>' +
+        '<div style="margin-bottom:14px;"><span class="label">Nouveau mot de passe</span>' +
+        '<input class="input" id="inp-new-mpw" type="password" placeholder="nouveau mot de passe"/></div>' +
+        '<div style="display:flex;gap:10px;">' +
+        '<button class="btn btn-outline" style="flex:1;" id="btn-cancel-pw">Annuler</button>' +
+        '<button class="btn btn-sky" style="flex:2;" id="btn-save-pw">Sauvegarder</button>' +
+        '</div></div>';
+      document.body.appendChild(modal);
+      setTimeout(()=>{ document.getElementById("inp-new-mpw").focus(); }, 50);
+      document.getElementById("btn-cancel-pw").onclick = () => modal.remove();
+      document.getElementById("btn-save-pw").onclick = async () => {
+        const pw = document.getElementById("inp-new-mpw").value;
+        if(!pw||pw.length<3){ flash("Mot de passe trop court !","#FFD84D"); return; }
+        emp.password = pw;
+        await saveDB();
+        modal.remove();
+        flash("Mot de passe mis à jour !","#4ECB71");
+      };
+      return;
+    }
+  });
+}
+
+</script>
+</body>
+</html>
